@@ -1,0 +1,1 @@
+# Temporary until Doctrine Migrations or similar is configured
