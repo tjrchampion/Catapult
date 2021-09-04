@@ -33,4 +33,10 @@ class User
      * @ORM\Column(type="string")
      */
     protected $password;
+
+    /**
+    * @ManyToOne(targetEntity="Token")
+    * @JoinColumn(name="id", referencedColumnName="user_id")
+    */
+    private $token;
 }
