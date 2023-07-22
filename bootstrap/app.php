@@ -1,15 +1,9 @@
-<?php
+<?php 
 
-use Docufiy\Actions\Home\HomeAction;
+declare(strict_types=1);
+
 use Dotenv\Dotenv;
-use League\Route\Router;
-use Laminas\Diactoros\Request;
-use Laminas\Diactoros\Response;
-use Laminas\Diactoros\ResponseFactory;
-use League\Route\Strategy\JsonStrategy;
-use League\Container\ReflectionContainer;
 use Dotenv\Exception\InvalidPathException;
-
 /**
  * Require composer psr-4 autoload 
  */
@@ -30,18 +24,15 @@ try {
  */
 require_once __DIR__ . '/container.php';
 
-$responseFactory = new ResponseFactory();
+$request = $container->get('request');
 
-$strategy = new JsonStrategy($responseFactory);
-$route = $container->get('router')->setStrategy($strategy);
-
-
-require_once(__DIR__ . '/../routes/api.php');
-
+$responseFactory = new Laminas\Diactoros\ResponseFactory();
+$strategy = new League\Route\Strategy\JsonStrategy($responseFactory);
+$router   = (new League\Route\Router)->setStrategy($strategy);
 
 /**
- * Dispatch the request, and response to the route collection.
+ * Routing
  */
-$response = $route->dispatch(
-    $container->get('request')
-);
+require_once(__DIR__ . '/../routes/api.php');
+
+$response = $router->dispatch($request);

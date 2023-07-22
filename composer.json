@@ -1,8 +1,8 @@
 {
-    "description": "Docufiy PHP Core",
+    "description": "Catapult PHP Core",
     "autoload": {
         "psr-4" : {
-            "Docufiy\\": "app"
+            "Catapult\\": "app"
         },
         "files": [
             "app/helpers.php"
@@ -11,10 +11,18 @@
     "require": {
         "vlucas/phpdotenv": "^5.3",
         "league/route": "^5.1",
-        "laminas/laminas-diactoros": "^2.6",
+        "laminas/laminas-diactoros": "^2.8",
         "laminas/laminas-httphandlerrunner": "^2.0",
         "league/container": "^4.1",
-        "hassankhan/config": "^2.2",
-        "doctrine/orm": "2.8.5"
+        "hassankhan/config": "^3.0.0",
+        "doctrine/orm": "2.8.5",
+        "nesbot/carbon": "^2.52",
+        "intercom/intercom-php": "^4.4",
+        "php-http/guzzle6-adapter": "^2.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }

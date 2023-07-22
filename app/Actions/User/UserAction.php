@@ -2,16 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Actions\User;
+namespace Catapult\Actions\User;
 
-use Docufiy\Actions\BaseAction;
+use Catapult\Actions\BaseAction;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Docufiy\Domain\Services\User\UserService;
-use Docufiy\Responders\User\UserResponder;
-
+use Catapult\Responders\User\UserResponder;
+use Catapult\Domain\Services\User\UserService;
 final class UserAction extends BaseAction
 {
+
+    private $service;
+
+    private $responder;
 
     public function __construct(UserService $service, UserResponder $responder)
     {
@@ -30,5 +33,4 @@ final class UserAction extends BaseAction
             $this->response, $this->service->handle() //can pass in your request object if needed.
         );
     }
-
 }

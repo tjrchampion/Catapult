@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Providers;
+namespace Catapult\Providers;
 
+use Doctrine\ORM\EntityManager;
+use Catapult\Domain\Repositories\Contracts\AuthInterface;
+use Catapult\Domain\Repositories\Contracts\UserInterface;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use Docufiy\Domain\Repositories\Contracts\HomeInterface;
-use Docufiy\Domain\Repositories\Implementations\HomeRepositoryImpl;
-
+use Catapult\Domain\Repositories\Implementations\AuthRepositoryImpl;
+use Catapult\Domain\Repositories\Implementations\UserRepositoryImpl;
 class RepositoryServiceProvider extends AbstractServiceProvider
 {
     
@@ -22,7 +24,8 @@ class RepositoryServiceProvider extends AbstractServiceProvider
     public function provides(string $id): bool
     {
         $services = [
-            HomeInterface::class
+            UserInterface::class,
+            AuthInterface::class,
         ];
         return in_array($id, $services);
     }
@@ -36,9 +39,18 @@ class RepositoryServiceProvider extends AbstractServiceProvider
     public function register(): void
     {
         $container = $this->getContainer();
+        $config = $container->get('config');
 
-        $container->add(HomeInterface::class, function () {
-            return new HomeRepositoryImpl();
+        $container->add(UserInterface::class, function() use ($container) {
+            return new UserRepositoryImpl(
+                $container->get(EntityManager::class)
+            );
+        });
+
+        $container->add(AuthInterface::class, function() use ($container) {
+            return new AuthRepositoryImpl(
+                $container->get(EntityManager::class), $container->get('config')
+            );
         });
     }
 

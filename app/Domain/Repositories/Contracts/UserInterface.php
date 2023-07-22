@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Domain\Repositories\Contracts;
-
+namespace Catapult\Domain\Repositories\Contracts;
 interface UserInterface
 {
     /**

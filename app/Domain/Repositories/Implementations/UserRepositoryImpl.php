@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Domain\Repositories\Implementations;
+namespace Catapult\Domain\Repositories\Implementations;
 
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManager;
-use Docufiy\Domain\Models\User;
-use Laminas\Diactoros\Response\JsonResponse;
-use Doctrine\Common\Collections\ArrayCollection;
-use Docufiy\Domain\Repositories\Contracts\UserInterface;
-
+use Catapult\Domain\Models\User;
+use Catapult\Domain\Repositories\Contracts\UserInterface;
 class UserRepositoryImpl implements UserInterface
 {
+    private $db;
 
     public function __construct(EntityManager $db)
     {
@@ -27,6 +25,5 @@ class UserRepositoryImpl implements UserInterface
             ->getQuery();
         
         return $query->getResult(Query::HYDRATE_ARRAY);
-
     }
 }
