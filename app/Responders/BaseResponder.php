@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Responders;
+namespace Catapult\Responders;
+
+use Psr\Http\Message\ResponseInterface;
 
 class BaseResponder
 {
-
-	public function withJson($response, array $data, int $status = 200)
+	public function withJson(ResponseInterface $response, array $data, int $status = 200)
 	{
 		$response->getBody()->write(
 			json_encode([

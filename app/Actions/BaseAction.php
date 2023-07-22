@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Actions;
+namespace Catapult\Actions;
 
 use Laminas\Diactoros\Response;
-
 class BaseAction
 {
+    protected ?Response $response = NULL;
 
     public function __construct()
     {

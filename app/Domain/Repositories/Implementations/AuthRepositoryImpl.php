@@ -1,9 +1,41 @@
 <?php
 
-namespace Docufiy\Domain\Services\Auth;
+declare(strict_types=1);
 
-class AuthService
+namespace Catapult\Domain\Repositories\Implementations;
+
+use Carbon\Carbon;
+use Noodlehaus\Config;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\EntityManager;
+use Catapult\Domain\Models\Auth;
+use League\Container\Container;
+use Laminas\Diactoros\Response\JsonResponse;
+use Catapult\Domain\Repositories\Contracts\AuthInterface;
+
+class AuthRepositoryImpl implements AuthInterface
 {
+    private $db;
+    
+    private $config;
+
+    private $container;
+
+    public function __construct(EntityManager $db, Config $config)
+    {
+        $this->db = $db;
+        $this->config = $config;
+    }
+
+    /**
+     * save a token to the db
+     *
+     * @return Object
+     */
+    public function saveToken($data) : array
+    {
+        return [json_decode($data)];
+    }
 
     /**
      * Generates a 32 character long token string
@@ -26,8 +58,8 @@ class AuthService
      */
     public function getToken(int $uId) : string
     {
-        $token = _generatePersonalAccessToken($uId);
-        $hash = $this->_hashToken();
+        $token = $this->_generatePersonalAccessToken($uId);
+        $hash = $this->_hashToken($token);
         $this->_storeTokenHash($hash, $uId);
         return $token;
     }
@@ -56,7 +88,7 @@ class AuthService
      */
     private function _storeTokenHash(string $hash, int $uId)
     {
-        // Rovoke the users previous token
+        // Revoke the users previous token
         $this->revokeToken($uId);
     }
 
@@ -69,6 +101,7 @@ class AuthService
      */
     public function revokeToken()
     {
+        //
     }
 
     /**
@@ -78,7 +111,7 @@ class AuthService
      */
     private function _getTokenExpiryTimeFromConfig() : string
     {
-        $config = $container->get('config');
+        $config = $this->container->get('config');
         return $config->get('token.expiry');
     }
 

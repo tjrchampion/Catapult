@@ -2,26 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Domain\Services\User;
+namespace Catapult\Domain\Services\User;
 
-use Docufiy\Domain\Repositories\Implementations\UserRepositoryImpl;
-
+use Catapult\Domain\Repositories\Contracts\UserInterface;
 class UserService
 {
-
     /**
-     * Should be UserImterface
-	 * @var UserRepositoryImpl
+	 * @var UserInterface
 	 */
 	private $user;
 
-    public function __construct(UserRepositoryImpl $user)
+    public function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
     /**
      * service wrapper to return the respository
-     *
+     * //here you can manipulate the data and pass it into the repo
      * @return array
      */
     public function handle()

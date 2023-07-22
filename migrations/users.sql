@@ -6,7 +6,7 @@
 # https://github.com/Sequel-Ace/Sequel-Ace
 #
 # Host: 127.0.0.1 (MySQL 8.0.21)
-# Database: docufiy
+# Database: catapult
 # Generation Time: 2021-08-31 11:55:55 +0000
 # ************************************************************
 
@@ -40,8 +40,7 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`)
 VALUES
-	(1,'Tom The Champ Champion','hello@tomchampion.xyz','123','2021-08-30 20:46:00','2021-08-30 20:46:00'),
-	(2,'Matt The Twat','matt@thetwat.com','1234','2021-08-31 12:53:35','2021-08-31 12:55:15');
+	(1,'Tom Champion','hello@tomchampion.xyz','123','2021-08-30 20:46:00','2021-08-30 20:46:00');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

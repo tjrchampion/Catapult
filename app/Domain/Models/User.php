@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Domain\Models;
+namespace Catapult\Domain\Models;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * @ORM\Entity 
  * @ORM\Table(name="users")
@@ -35,8 +34,8 @@ class User
     protected $password;
 
     /**
-    * @ManyToOne(targetEntity="Token")
-    * @JoinColumn(name="id", referencedColumnName="user_id")
+    * @ORM\ManyToOne(targetEntity="Token")
+    * @ORM\JoinColumn(name="id", referencedColumnName="user_id")
     */
     private $token;
 }

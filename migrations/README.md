@@ -1,1 +1,1 @@
-# Temporary until Doctrine Migrations or similar is configured
+# Temporary sql dump until Doctrine Migrations or similar is configured

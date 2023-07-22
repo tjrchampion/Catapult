@@ -1,11 +1,11 @@
 <?php
 
-namespace Docufiy\Container;
+namespace Catapult\Container;
 
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionParameter;
-use Docufiy\Exceptions\NotFoundException;
+use Catapult\Exceptions\NotFoundException;
 
 class Container
 {

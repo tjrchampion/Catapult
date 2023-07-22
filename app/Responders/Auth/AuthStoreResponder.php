@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Catapult\Responders\User;
+namespace Catapult\Responders\Auth;
 
 use Catapult\Responders\BaseResponder;
 use Psr\Http\Message\ResponseInterface;
-class UserResponder extends BaseResponder
+
+class AuthStoreResponder extends BaseResponder
 {
     /**
      *

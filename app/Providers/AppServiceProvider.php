@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Providers;
+namespace Catapult\Providers;
 
 use League\Route\Router;
+use Laminas\Diactoros\Response;
 use Laminas\Diactoros\ServerRequestFactory;
-use Laminas\HttpHandlerRunner\Emitter\SapiStreamEmitter;
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 
 class AppServiceProvider extends AbstractServiceProvider
@@ -24,8 +25,9 @@ class AppServiceProvider extends AbstractServiceProvider
     {
         $services = [
             'router',
+            'emitter',
             'request',
-            'emitter'
+            'response'
         ];
         return in_array($id, $services);
     }
@@ -39,18 +41,20 @@ class AppServiceProvider extends AbstractServiceProvider
     public function register(): void
     {
         $container = $this->getContainer();
+        
+        $container->add('response', Response::class);
+
+        $container->add('request', function () {
+            return ServerRequestFactory::fromGlobals(
+                $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+            );
+        });
 
         $container->add('router', function() {
             return Router::class;
         });
 
-        $container->add('request', function() {
-            return ServerRequestFactory::fromGlobals([
-                $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
-            ]);
-        });
-
-        $container->add('emitter', SapiStreamEmitter::class);
+        $container->add('emitter', SapiEmitter::class);
     }
 
 }

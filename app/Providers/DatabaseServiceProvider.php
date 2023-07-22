@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Providers;
+namespace Catapult\Providers;
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-
 class DatabaseServiceProvider extends AbstractServiceProvider
 {
     

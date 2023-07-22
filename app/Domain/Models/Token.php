@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Docufiy\Domain\Models;
+namespace Catapult\Domain\Models;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * @ORM\Entity 
  * @ORM\Table(name="tokens")
@@ -37,5 +36,5 @@ class Token
     /**
      * @ORM\Column(name="abilities", type="string". nullable=false)
      */
-    protected $abilities
+    protected $abilities;
 }
