@@ -43,10 +43,11 @@ class RepositoryServiceProvider extends AbstractServiceProvider
 
         $container->add(UserInterface::class, function() use ($container) {
             return new UserRepositoryImpl(
-                $container->get(EntityManager::class)
+                $container->get(EntityManager::class),
+                $container->get('redis'),
             );
         });
-
+        
         $container->add(AuthInterface::class, function() use ($container) {
             return new AuthRepositoryImpl(
                 $container->get(EntityManager::class), $container->get('config')

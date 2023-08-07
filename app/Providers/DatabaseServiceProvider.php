@@ -12,7 +12,7 @@ class DatabaseServiceProvider extends AbstractServiceProvider
     
     /**
      * The provides method is a way to let the container
-     * know that a service is provided by this service
+     * know that service is provided by this service
      * provider.
      *
      * @param string $id
@@ -55,8 +55,6 @@ class DatabaseServiceProvider extends AbstractServiceProvider
             return $entityManager;
 
         });
-
-
 
     }
 

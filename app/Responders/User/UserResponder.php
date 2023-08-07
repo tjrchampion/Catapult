@@ -18,4 +18,4 @@ class UserResponder extends BaseResponder
     {
         return $this->withJson($response, $data, 200);
     }
-}
+}   

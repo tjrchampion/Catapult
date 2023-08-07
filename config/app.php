@@ -10,6 +10,7 @@ return [
         'Catapult\Providers\AppServiceProvider',
         'Catapult\Providers\DotEnvServiceProvider',
         'Catapult\Providers\DatabaseServiceProvider',
-        'Catapult\Providers\RepositoryServiceProvider'
+        'Catapult\Providers\RepositoryServiceProvider',
+        'Catapult\Providers\RedisServiceProvider',
     ],
 ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace Docufiy\Exceptions;
+namespace Catapult\Exceptions;
 
 use Exception;
 

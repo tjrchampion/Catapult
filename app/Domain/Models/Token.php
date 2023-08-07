@@ -14,7 +14,7 @@ class Token
     /**
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Id 
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="bigint", nullable=false)
      */
     protected $id;
 
@@ -34,7 +34,7 @@ class Token
     protected $name;
 
     /**
-     * @ORM\Column(name="abilities", type="string". nullable=false)
+     * @ORM\Column(name="abilities", type="json_array", nullable=false)
      */
     protected $abilities;
 }

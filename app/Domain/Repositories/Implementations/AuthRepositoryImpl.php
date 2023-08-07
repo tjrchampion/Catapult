@@ -8,8 +8,9 @@ use Carbon\Carbon;
 use Noodlehaus\Config;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManager;
-use Catapult\Domain\Models\Auth;
 use League\Container\Container;
+use Catapult\Domain\Models\Auth;
+use Catapult\Domain\Models\User;
 use Laminas\Diactoros\Response\JsonResponse;
 use Catapult\Domain\Repositories\Contracts\AuthInterface;
 
@@ -34,7 +35,13 @@ class AuthRepositoryImpl implements AuthInterface
      */
     public function saveToken($data) : array
     {
-        return [json_decode($data)];
+        $user = json_decode($data);
+
+        return $this->check($user);
+        return [
+            'email' => $user->email,
+            'password' => password_hash($user->password, PASSWORD_DEFAULT),
+        ];
     }
 
     /**
@@ -126,5 +133,19 @@ class AuthRepositoryImpl implements AuthInterface
     {
         $minutes = $this->_getTokenExpiryTimeFromConfig();
         $exipry = Carbon::now()->addMinutes($minutes)->timestamp;
+    }
+
+    /**
+     * Is given password valid.
+     *
+     * @return Boolean
+     */
+    public function check($user)
+    {
+        $query = $query = $this->db
+        ->getRepository(User::class)
+        ->findOneBy(['email' => $user->email]);
+    
+        dd($query->fetchObject());
     }
 }

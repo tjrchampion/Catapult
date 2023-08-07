@@ -19,4 +19,11 @@ interface AuthInterface
      * @return Object
      */
     public function saveToken($data);
+
+    /**
+     * is given password & email valid
+     *
+     * @return void
+     */
+    public function check($data);
 }

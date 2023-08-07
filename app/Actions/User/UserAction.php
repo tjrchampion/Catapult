@@ -24,6 +24,9 @@ final class UserAction extends BaseAction
     }
 
     /**
+     * 
+     * Will run when this file is called.
+     * 
 	 * @param RequestInterface $request
 	 * @return ResponseInterface
 	 */
