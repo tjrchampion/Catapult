@@ -9,5 +9,14 @@ return [
         'port' => $_ENV['DB_PORT'],
         'password' => $_ENV['DB_PASS'],
     ],
-    'mariadb' => []
+    'redis' => [
+        'cluster' => false,
+        'default' => [
+            'schema' => $_ENV['REDIS_SCHEMA'],
+            'host' => $_ENV['REDIS_HOST'],
+            'port' => $_ENV['REDIS_PORT'],
+            'password' => $_ENV['REDIS_PASSWORD'],
+        ]
+    ],
+    'mariadb' => [],
 ];

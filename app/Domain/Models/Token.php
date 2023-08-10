@@ -15,6 +15,7 @@ class Token
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Id 
      * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\OneToMany(targetEntity="Models\Token", mappedBy="user")
      */
     protected $id;
 
@@ -34,7 +35,7 @@ class Token
     protected $name;
 
     /**
-     * @ORM\Column(name="abilities", type="string". nullable=false)
+     * @ORM\Column(name="abilities", type="json_array", nullable=false)
      */
     protected $abilities;
 }

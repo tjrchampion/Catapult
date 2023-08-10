@@ -11,3 +11,8 @@ if (!function_exists('uploads_path')) {
         return base_path('storage/uploads/' . $path);
     }
 }
+
+function dd($data)
+{
+    return die(var_dump($data));
+}

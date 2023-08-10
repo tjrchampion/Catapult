@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
     /**
-     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Id 
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
@@ -34,8 +34,28 @@ class User
     protected $password;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Token")
-    * @ORM\JoinColumn(name="id", referencedColumnName="user_id")
+    * @ORM\OneToMany(targetEntity="Token", mappedBy="users")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
     */
     private $token;
+
+    /**
+     * return protected "password" property with getter
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * return protected "id" property with getter
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }
