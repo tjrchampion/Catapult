@@ -14,7 +14,8 @@ class Token
     /**
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Id 
-     * @ORM\Column(name="id", type="bigint", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\OneToMany(targetEntity="Models\Token", mappedBy="user")
      */
     protected $id;
 

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Catapult\Domain\Repositories\Contracts;
 
+use Catapult\Domain\Models\User;
+use Catapult\Exceptions\NotFoundException;
+
 interface AuthInterface
 {
     /**
@@ -25,5 +28,5 @@ interface AuthInterface
      *
      * @return void
      */
-    public function check($data);
+    public function check(object $user): User|array;
 }
