@@ -157,7 +157,7 @@ class AuthRepositoryImpl implements AuthInterface
     /**
      * Is given password valid.
      *
-     * @return Boolean
+     * @return User|array
      */
     public function check(object $user) : User|array
     {
@@ -174,7 +174,6 @@ class AuthRepositoryImpl implements AuthInterface
         try {
             if((!empty($user)) && password_verify($user->password, $result->getPassword())) {
                 return $result;
-            } else {
             }
             throw new NotFoundException('Could find a user with these credentials.');
             

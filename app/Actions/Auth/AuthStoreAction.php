@@ -16,14 +16,14 @@ final class AuthStoreAction extends BaseAction
     /**
      * Responder for Auth
      *
-     * @var Object
+     * @var AuthStoreResponder
      */
     private $responder;
 
     /**
      * Service for Auth
      *
-     * @var [type]
+     * @var AuthStoreService
      */
     private $service;
 
